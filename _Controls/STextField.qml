@@ -7,7 +7,7 @@ TextField {
     // For background
     property color bgColor: "white"
     property color borderColor: tFi.focus ? palette.highlight : palette.mid
-    property int borderWidth: 1
+    property int borderWidth: tFi.focus ? 2 : 1
     property int radius
 
     background: Rectangle {
