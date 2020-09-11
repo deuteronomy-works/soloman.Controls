@@ -7,16 +7,15 @@ ApplicationWindow {
     visible: true
     width: 500
     height: 400
+    color: "dodgerblue"
 
     Row {
-        SButton {
-            text: "Love"
-            bgColor: "dodgerblue"
-            color: "white"
+        STextArea {
+            placeholderText: "Love"
         }
 
-        Button {
-            text: "Love"
+        TextArea {
+            placeholderText: "Love"
         }
     }
 
