@@ -7,14 +7,14 @@ ApplicationWindow {
     visible: true
     width: 500
     height: 400
-    color: "dodgerblue"
+    color: "red"
 
     Row {
-        STextArea {
+        STextField {
             placeholderText: "Love"
         }
 
-        TextArea {
+        TextField {
             placeholderText: "Love"
         }
     }
