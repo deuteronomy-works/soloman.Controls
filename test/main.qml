@@ -10,12 +10,12 @@ ApplicationWindow {
     color: "red"
 
     Row {
-        STextField {
-            placeholderText: "Love"
+        SComboBox {
+            model: ["Love", "lust"]
         }
 
-        TextField {
-            placeholderText: "Love"
+        ComboBox {
+            model: ["Love", "lust"]
         }
     }
 
