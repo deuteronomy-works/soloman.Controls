@@ -4,6 +4,9 @@ import QtQuick.Controls 2.3
 ComboBox {
     id: cbox
 
+    // For contentItem
+    property color color: palette.buttonText
+
     // For background
     property color bgColor: cbox.down ? palette.mid : palette.button
     property color borderColor
@@ -17,6 +20,19 @@ ComboBox {
         border.width: cbox.borderWidth
         border.color: cbox.borderColor
         radius: cbox.radius
+    }
+
+    contentItem: Text {
+        leftPadding: 4
+
+        rightPadding: cbox.indicator.width + cbox.spacing
+
+        text: cbox.displayText
+        font: cbox.font
+        color: cbox.color
+        verticalAlignment: Text.AlignVCenter
+        elide: Text.ElideRight
+
     }
 
 }
