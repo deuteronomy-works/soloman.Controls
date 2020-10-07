@@ -4,6 +4,9 @@ import QtQuick.Controls 2.3
 ComboBox {
     id: cbox
 
+    SProperties { id: props}
+
+
     // For background
     property color bgColor: cbox.down ? palette.mid : palette.button
     property color borderColor
@@ -14,7 +17,7 @@ ComboBox {
     property color color: palette.buttonText
 
     // For indicator
-    property text indicatorText: ""
+    property string indicatorText: "bell"
     property color indicatorColor: cbox.color
 
     rightPadding: cbox.indicator.width + cbox.spacing
@@ -44,7 +47,7 @@ ComboBox {
     indicator: Text {
         rightPadding: 0
         leftPadding: 0
-        font: ""
+        font.family: props.fontFAR.name
         color: cbox.indicatorColor
         verticalAlignment: Text.AlignVCenter
         text: cbox.indicatorText
