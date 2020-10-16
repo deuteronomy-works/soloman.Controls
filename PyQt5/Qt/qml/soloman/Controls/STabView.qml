@@ -5,9 +5,12 @@ Rectangle {
     anchors.fill: parent
 
     property int currentIndex: 0
-    property QtObject currentItem: this.children.length === currentIndex ? this.children[currentIndex] : QtObject
+    property QtObject currentItem: this.items[currentIndex]
     property int count: 0
     property url url: ""
+
+    property var items: [QtObject]
+    property var secret_items: [QtObject]
 
 
     function addChild() {
@@ -15,7 +18,15 @@ Rectangle {
         basev.count += 1
         var comp = Qt.createComponent(basev.url)
         var obj = comp.createObject(mComp)
-        return true;
+        secret_items[basev.count] = mComp;
+        items[basev.count] = obj;
+        return basev.count;
+    }
+
+    function removeChild(ind) {
+        var mComp = secret_items[ind];
+        basev.count -= 1; // decrement count
+        mComp.destroy();
     }
 
 
