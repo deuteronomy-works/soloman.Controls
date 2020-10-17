@@ -66,11 +66,16 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var ind = sv.addChild(sv.url='New.qml')
-        console.log(sv.items[ind])
+        var str = 'import QtQuick 2.10
 
-        var indc = sv.addChild(sv.url='New.qml')
-        console.log(sv.items[indc])
+Rectangle {
+    width: 200
+    height: 300
+    color: "lightgreen"
+}
+';
+        var ind = sv.addChild(str)
+        console.log(sv.items[ind])
     }
 
 
