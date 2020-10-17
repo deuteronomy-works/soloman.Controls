@@ -15,12 +15,17 @@ Rectangle {
 
     function addChild(qml=null) {
         var obj;
+        var comp_str = ''
 
-        var mComp = Qt.createQmlObject('import QtQuick 2.10; Rectangle {property int index:' + basev.count +';anchors.fill: parent;color: "transparent";visible: index == parent.currentIndex;}', basev);
+        comp_str = 'import QtQuick 2.10; Rectangle {property int index:' + basev.count +';';
+        comp_str += 'anchors.fill: parent;color: "transparent";';
+        comp_str += 'visible: index == parent.currentIndex;}';
+
+        var mComp = Qt.createQmlObject(comp_str, basev);
 
         basev.count += 1;
 
-        if(qml) {
+        if(!basev.url) {
             obj = Qt.createQmlObject(qml, mComp);
         } else {
             var comp = Qt.createComponent(basev.url);
