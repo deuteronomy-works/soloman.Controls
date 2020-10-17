@@ -13,13 +13,22 @@ Rectangle {
     property var secret_items: [QtObject]
 
 
-    function addChild() {
-        var mComp = Qt.createQmlObject('import QtQuick 2.10; Rectangle {property int index:' + basev.count +';anchors.fill: parent;color: "transparent";visible: index == parent.currentIndex;}', basev)
-        basev.count += 1
-        var comp = Qt.createComponent(basev.url)
-        var obj = comp.createObject(mComp)
+    function addChild(qml=null) {
+        var obj;
+
+        var mComp = Qt.createQmlObject('import QtQuick 2.10; Rectangle {property int index:' + basev.count +';anchors.fill: parent;color: "transparent";visible: index == parent.currentIndex;}', basev);
+
+        basev.count += 1;
+
+        if(qml) {
+            obj = Qt.createQmlObject(qml, mComp);
+        } else {
+            var comp = Qt.createComponent(basev.url);
+            obj = comp.createObject(mComp);
+        }
         secret_items[basev.count] = mComp;
         items[basev.count] = obj;
+
         return basev.count;
     }
 
