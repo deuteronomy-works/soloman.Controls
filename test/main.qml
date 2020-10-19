@@ -14,13 +14,12 @@ ApplicationWindow {
         TabButton {
             text: "0"
 
-            onClicked: sv.currentIndex = 0
+            onClicked: console.log(sField.text, sField.passwordCharacter)
 
         }
 
         TabButton {
             text: "1"
-            visible: sv.count > 2
 
             onClicked: {
                 sv.currentIndex = 1
@@ -31,7 +30,6 @@ ApplicationWindow {
 
         TabButton {
             text: "2"
-            visible: sv.count > 3
 
             onClicked: {
                 sv.currentIndex = 1
@@ -52,23 +50,8 @@ ApplicationWindow {
 
     }
 
-    STabView {
-
-        id: sv
-        currentIndex: 0
-
-        STab {
-            width: 300
-            height: 200
-            color: "dodgerblue"
-        }
-
-    }
-
-    Component.onCompleted: {
-
-        var ind = sv.addChild(sv.url="New.qml")
-        console.log(sv.items[ind])
+    SSecureField {
+        id: sField
     }
 
 
