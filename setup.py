@@ -6,12 +6,12 @@ with open('README.md', 'r') as rm:
 
 setup(
     name='soloman.Controls',
-    version='1.0',
+    version='2.0',
     description='For the love of python and qml',
     long_description=long_desc,
     long_description_content_type='text/markdown',
-    install_requires=['PyQt5'],
-    keywords="qml, qml controls, soloman, advanced qml, pyqt5",
+    install_requires=['PyQt6'],
+    keywords="qml, qml controls, soloman, advanced qml, pyqt6",
     url='https://github.com/deuteronomy-works/soloman',
     author='Amoh - Gyebi Godwin Ampofo Michael',
     author_email='amohgyebigodwin@gmail.com',
@@ -30,6 +30,6 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Software Development :: Libraries :: Python Modules"
     ],
-    packages=['PyQt5'],
-    package_data={'PyQt5': ['Qt/qml/soloman/Controls/qmldir', 'Qt/qml/soloman/Controls/*.qml']},
+    packages=['PyQt6'],
+    package_data={'PyQt6': ['Qt/qml/soloman/Controls/qmldir', 'Qt/qml/soloman/Controls/*.qml']},
 )

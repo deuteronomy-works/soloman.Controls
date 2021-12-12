@@ -1,4 +1,4 @@
-import QtQuick 2.10
+import QtQuick
 
 Rectangle {
     id: basev
@@ -17,7 +17,7 @@ Rectangle {
         var obj;
         var comp_str = ''
 
-        comp_str = 'import QtQuick 2.10; Rectangle {property int index:' + basev.count +';';
+        comp_str = 'import QtQuick; Rectangle {property int index:' + basev.count +';';
         comp_str += 'anchors.fill: parent;color: "transparent";';
         comp_str += 'visible: index == parent.currentIndex;}';
 

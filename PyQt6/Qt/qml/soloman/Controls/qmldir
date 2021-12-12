@@ -1,4 +1,7 @@
 module soloman.Controls
 STabView 1.0 STabView.qml
+STabView 2.0 STabView.qml
 STab 1.0 STab.qml
+STab 2.0 STab.qml
 SButton 1.1 SButton.qml
+SButton 2.0 SButton.qml
