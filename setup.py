@@ -6,7 +6,7 @@ with open('README.md', 'r') as rm:
 
 setup(
     name='soloman.Controls',
-    version='2.0',
+    version='2.0.1',
     description='For the love of python and qml',
     long_description=long_desc,
     long_description_content_type='text/markdown',
@@ -31,5 +31,9 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules"
     ],
     packages=['PyQt6'],
-    package_data={'PyQt6': ['Qt/qml/soloman/Controls/qmldir', 'Qt/qml/soloman/Controls/*.qml']},
+    package_data={'PyQt6': [
+        'Qt/qml/soloman/Controls/qmldir',
+        'Qt/qml/soloman/Controls/*.qml',
+        'Qt6/qml/soloman/Controls/qmldir',
+        'Qt6/qml/soloman/Controls/*.qml']},
 )
