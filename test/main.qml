@@ -1,6 +1,6 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import "../_Controls"
 
 ApplicationWindow {
@@ -9,18 +9,50 @@ ApplicationWindow {
     height: 400
     color: "red"
 
-    Row {
-        STextField {
-            placeholderText: "Love"
+    menuBar: TabBar {
+
+        TabButton {
+            text: "0"
+
+            onClicked: console.log(sField.text)
+
         }
 
-        TextField {
-            placeholderText: "Love"
+        TabButton {
+            text: "1"
+
+            onClicked: {
+                sv.currentIndex = 1
+                console.log(sv.items[1].color, sv.currentItem.color)
+            }
+
         }
+
+        TabButton {
+            text: "2"
+
+            onClicked: {
+                sv.currentIndex = 1
+                console.log(sv.items[2].color, sv.currentItem.color)
+            }
+
+        }
+
+        TabButton {
+            text: "3"
+
+            onClicked: {
+
+                sv.removeChild(1)
+            }
+
+        }
+
     }
 
-    Component.onCompleted: {
-        console.log(width, height)
+    STextField {
+        id: sField
     }
+
 
 }
