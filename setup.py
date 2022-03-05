@@ -6,12 +6,11 @@ with open('README.md', 'r') as rm:
 
 setup(
     name='soloman.Controls',
-    version='2.0.1',
+    version='3.0',
     description='For the love of python and qml',
     long_description=long_desc,
     long_description_content_type='text/markdown',
-    install_requires=['PyQt6'],
-    keywords="qml, qml controls, soloman, advanced qml, pyqt6",
+    keywords="qml, qml controls, soloman, pyside6, pyqt6, pyside2, pyqt5",
     url='https://github.com/deuteronomy-works/soloman',
     author='Amoh - Gyebi Godwin Ampofo Michael',
     author_email='amohgyebigodwin@gmail.com',
@@ -30,10 +29,11 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Software Development :: Libraries :: Python Modules"
     ],
-    packages=['PyQt6'],
-    package_data={'PyQt6': [
-        'Qt/qml/soloman/Controls/qmldir',
-        'Qt/qml/soloman/Controls/*.qml',
-        'Qt6/qml/soloman/Controls/qmldir',
-        'Qt6/qml/soloman/Controls/*.qml']},
+    packages=['PyQt6', 'PyQt5', 'PySide2', 'PySide6'],
+    package_data={
+        'PyQt5': ['Qt5/qml/soloman/Controls/qmldir', 'Qt5/qml/soloman/Controls/*.qml'],
+        'PyQt6': ['Qt6/qml/soloman/Controls/qmldir', 'Qt6/qml/soloman/Controls/*.qml'],
+        'PySide2': ['qml/soloman/Controls/qmldir', 'qml/soloman/Controls/*.qml'],
+        'PySide6': ['qml/soloman/Controls/qmldir', 'qml/soloman/Controls/*.qml']
+        },
 )
