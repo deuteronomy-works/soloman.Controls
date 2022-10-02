@@ -3,6 +3,31 @@ Controls for Qml
 
 ## Controls
 
+### SButton
+
+#### Example
+
+```qml
+
+import QtQuick
+import QtQuick.Controls.Basic
+import soloman.Controls
+
+
+ApplicationWindow {
+    visible: true
+    width: 400
+    height: 400
+    
+    SButton {
+        text: "Click Me"
+        color: "dodgerblue"
+        textColor: "white"
+    }
+}
+
+```
+
 ### STabView
 
 ### STab
