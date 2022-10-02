@@ -1,35 +1,37 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.0
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Button {
-    id: btn
+    id: ctrl
 
-    // For contentItem
-    property color color: palette.buttonText
-    property int horizontalAlignment: Text.AlignHCenter
-    property int vertilAlignment: Text.AlignVCenter
-    property color bgColor: palette.button
+    // for contentItem
+    property color textColor: "black"
+    property color textHoverColor: Qt.lighter(this.textColor)
+    property color textPressedColor: Qt.darker(this.textColor)
 
-    // For background
-    property color borderColor
-    property int borderWidth
-    property int radius
-
-    background: Rectangle {
-        implicitWidth: 100
-        implicitHeight: 40
-        color: btn.bgColor
-        border.width: btn.borderWidth
-        border.color: btn.borderColor
-        radius: btn.radius
-    }
+    // for background
+    property color color: "#f1f1f1"
+    property color hoverColor: Qt.lighter(this.color)
+    property color pressedColor: Qt.darker(this.color)
+    property int radius: 0
+    property color borderColor: "black"
+    property int borderWidth: 0
 
     contentItem: Text {
-        text: btn.text
-        font: btn.font
-        color: btn.color
-        verticalAlignment: btn.vertilAlignment
-        horizontalAlignment: btn.horizontalAlignment
+        text: ctrl.text
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        font: ctrl.font
+        color: ctrl.down ? ctrl.textPressedColor : ctrl.hovered ? ctrl.textHoverColor : ctrl.textColor
+    }
+
+    background: Rectangle {
+        implicitWidth: 120
+        implicitHeight: 40
+        color: ctrl.down ? ctrl.pressedColor : ctrl.hovered ? ctrl.hoverColor : ctrl.color
+        radius: ctrl.radius
+        border.width: ctrl.borderWidth
+        border.color: ctrl.borderColor
     }
 
 }
