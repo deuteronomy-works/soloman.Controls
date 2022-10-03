@@ -6,6 +6,8 @@ CheckDelegate {
 
     property color color: "dodgerblue"
     property color hoverColor: Qt.darker(this.color)
+    property color backgroundColor: "white"
+    property color backgroundHoverColor: "#eeeeee"
     property color borderColor: "dodgerblue"
     property color hoverBorderColor: Qt.darker(this.borderColor)
     property color textColor: "dodgerblue"
@@ -46,6 +48,6 @@ CheckDelegate {
         implicitWidth: 100
         implicitHeight: 40
         visible: control.down || control.highlighted
-        color: control.down ? "#bdbebf" : "#eeeeee"
+        color: control.down ? control.backgroundHoverColor : control.backgroundColor
     }
 }
