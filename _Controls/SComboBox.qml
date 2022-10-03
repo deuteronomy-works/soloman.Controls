@@ -2,55 +2,94 @@ import QtQuick
 import QtQuick.Controls
 
 ComboBox {
-    id: cbox
+    id: control
 
-    SProperties { id: props}
+    property color color: "dodgerblue"
+    property color hoverColor: Qt.darker(this.color)
+    property color borderColor: "dodgerblue"
+    property color hoverBorderColor: Qt.darker(this.borderColor)
+    property color textColor: "dodgerblue"
+    property color textHoverColor: Qt.darker(this.textColor)
+    property color indicatorColor: this.textColor
+    property color indicatorHoverColor: Qt.darker(this.indicatorColor)
+    property color highlightedColor: "white"
+    property int radius: 3
 
+    delegate: ItemDelegate {
+        width: control.width
+        contentItem: Text {
+            text: control.textRole
+                ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole])
+                : modelData
+            color: index === control.highlightedIndex ? control.highlightedColor : control.textColor
+            font: control.font
+            elide: Text.ElideRight
+            verticalAlignment: Text.AlignVCenter
+        }
+        highlighted: control.highlightedIndex === index
+    }
 
-    // For background
-    property color bgColor: cbox.down ? palette.mid : palette.button
-    property color borderColor
-    property int borderWidth
-    property int radius
+    indicator: Canvas {
+        id: canvas
+        x: control.width - width - control.rightPadding
+        y: control.topPadding + (control.availableHeight - height) / 2
+        width: 12
+        height: 8
+        contextType: "2d"
 
-    // For contentItem
-    property color color: palette.buttonText
+        Connections {
+            target: control
+            function onPressedChanged() { canvas.requestPaint(); }
+        }
 
-    // For indicator
-    property string indicatorText: "bell"
-    property color indicatorColor: cbox.color
+        onPaint: {
+            context.reset();
+            context.moveTo(0, 0);
+            context.lineTo(width, 0);
+            context.lineTo(width / 2, height);
+            context.closePath();
+            context.fillStyle = control.pressed ? control.indicatorHoverColor : control.indicatorColor;
+            context.fill();
+        }
+    }
 
-    rightPadding: cbox.indicator.width + cbox.spacing
+    contentItem: Text {
+        leftPadding: 0
+        rightPadding: control.indicator.width + control.spacing
+
+        text: control.displayText
+        font: control.font
+        color: control.pressed ? control.textHoverColor : control.textColor
+        verticalAlignment: Text.AlignVCenter
+        elide: Text.ElideRight
+    }
 
     background: Rectangle {
         implicitWidth: 120
         implicitHeight: 40
-        color: cbox.bgColor
-        border.width: cbox.borderWidth
-        border.color: cbox.borderColor
-        radius: cbox.radius
+        border.color: control.pressed ? control.borderHoverColor : control.borderColor
+        border.width: control.visualFocus ? 2 : 1
+        radius: 2
     }
 
-    contentItem: Text {
-        leftPadding: cbox.leftPadding
+    popup: Popup {
+        y: control.height - 1
+        width: control.width
+        implicitHeight: contentItem.implicitHeight
+        padding: 1
 
-        rightPadding: cbox.rightPadding
+        contentItem: ListView {
+            clip: true
+            implicitHeight: contentHeight
+            model: control.popup.visible ? control.delegateModel : null
+            currentIndex: control.highlightedIndex
 
-        text: cbox.displayText
-        font: cbox.font
-        color: cbox.color
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
+            ScrollIndicator.vertical: ScrollIndicator { }
+        }
 
+        background: Rectangle {
+            border.color: control.borderColor
+            radius: 2
+        }
     }
-
-    indicator: Text {
-        rightPadding: 0
-        leftPadding: 0
-        font.family: props.fontFAR.name
-        color: cbox.indicatorColor
-        verticalAlignment: Text.AlignVCenter
-        text: cbox.indicatorText
-    }
-
 }
