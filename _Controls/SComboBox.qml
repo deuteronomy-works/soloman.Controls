@@ -7,7 +7,7 @@ ComboBox {
     property color color: "dodgerblue"
     property color hoverColor: Qt.darker(this.color)
     property color borderColor: "dodgerblue"
-    property color hoverBorderColor: Qt.darker(this.borderColor)
+    property color borderHoverColor: Qt.darker(this.borderColor)
     property color textColor: "dodgerblue"
     property color textHoverColor: Qt.darker(this.textColor)
     property color indicatorColor: this.textColor
@@ -54,9 +54,8 @@ ComboBox {
     }
 
     contentItem: Text {
-        leftPadding: 0
+        leftPadding: 8
         rightPadding: control.indicator.width + control.spacing
-
         text: control.displayText
         font: control.font
         color: control.pressed ? control.textHoverColor : control.textColor
@@ -77,6 +76,7 @@ ComboBox {
         width: control.width
         implicitHeight: contentItem.implicitHeight
         padding: 1
+        z: control.z > 1 ? control.z + 1 : 2
 
         contentItem: ListView {
             clip: true
