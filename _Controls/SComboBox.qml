@@ -26,6 +26,7 @@ ComboBox {
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
         }
+
         highlighted: control.highlightedIndex === index
     }
 
@@ -83,6 +84,9 @@ ComboBox {
             implicitHeight: contentHeight
             model: control.popup.visible ? control.delegateModel : null
             currentIndex: control.highlightedIndex
+            highlight: Rectangle {
+                color: control.hoverColor
+            }
 
             ScrollIndicator.vertical: ScrollIndicator { }
         }
