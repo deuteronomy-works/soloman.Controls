@@ -9,11 +9,8 @@ ApplicationWindow {
     height: 400
     //color: "#0c0d0d"
 
-    SButton {
-        text: "Click Me"
-        textPressedColor: "white"
-        borderWidth: 2
+    SComboBox {
+        model: ['first', 'second']
     }
-
 
 }
