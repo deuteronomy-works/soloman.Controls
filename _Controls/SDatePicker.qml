@@ -40,4 +40,152 @@ Rectangle {
         }
     }
 
+
+    Popup {
+        id: popup
+
+        property int year: 2023
+        property int month: 2
+        property var month_string: {
+            0: "January", 1: "February", 2: "March",
+            3: "April", 4: "May", 5: "June",
+            6: "July", 7: "August", 8: "September", 9: "October",
+            10: "November", 11: "December"}
+
+        property var years_model
+        property int from: 2010
+        property int to: 2030
+
+        width: 256
+        height: 256
+        visible: true
+        clip: true
+
+        function createModel(from, to) {
+            var llist = []
+            for (var x=from; x<to; x++) {
+                llist.push(x)
+            }
+            llist.push(to);
+
+            years_model = llist;
+        }
+
+        Component.onCompleted: {
+            createModel(popup.from, popup.to);
+        }
+
+        Rectangle {
+            anchors.fill: parent
+
+            StackView {
+                id: stack
+                anchors.fill: parent
+                initialItem: days
+            }
+
+            Component {
+                id: days
+
+                Rectangle {
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 8
+
+                        RowLayout {
+                            Layout.preferredHeight: 48
+                            Layout.fillWidth: true
+                            spacing: 0
+
+                            Soloman.SButton {
+                                Layout.preferredWidth: 24
+                                text: "<"
+                                enabled: popup.month > 0
+                                onClicked: popup.month -= 1
+                            }
+
+                            Soloman.SButton {
+                                Layout.fillWidth: true
+                                text: popup.month_string[popup.month] + " " + popup.year
+
+                                onClicked: stack.push(years)
+
+                            }
+
+                            Soloman.SButton {
+                                Layout.preferredWidth: 24
+                                text: ">"
+                                enabled: popup.month < 11
+                                onClicked: popup.month += 1
+                            }
+
+                        }
+
+                        GridLayout {
+                            columns: 1
+
+                            DayOfWeekRow {
+                                locale: grid.locale
+
+                                //Layout.column: 1
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
+                            }
+
+                            MonthGrid {
+                                id: grid
+                                month: popup.month
+                                year: popup.year
+                                locale: Qt.locale("en_US")
+
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                onClicked: {
+                                    print(date)
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                
+            }
+
+            Component {
+                id: years
+
+                Rectangle {
+                    clip: true
+                    color: "transparent"
+
+                    GridView {
+                        anchors.centerIn: parent
+                        width: 240
+                        height: 240
+                        model: popup.years_model
+                        cellWidth: 60
+                        cellHeight: 60
+                        delegate: Soloman.SButton {
+                            //anchors.fill: parent
+                            implicitWidth: 60
+                            implicitHeight: 60
+                            text: modelData
+
+                            onClicked: {
+                                popup.year = modelData
+                                stack.pop()
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
 }
