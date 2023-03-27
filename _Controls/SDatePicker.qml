@@ -152,7 +152,7 @@ Rectangle {
                                 Layout.fillHeight: true
 
                                 onClicked: {
-                                    control.selectedDate = date
+                                    control.selectedDate = date.toISOString().split("T")[0]
                                     popup.close()
                                 }
                             }
@@ -160,8 +160,6 @@ Rectangle {
                     }
 
                 }
-
-                
             }
 
             Component {
