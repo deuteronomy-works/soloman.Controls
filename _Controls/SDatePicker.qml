@@ -5,8 +5,11 @@ import "./" as Soloman
 
 
 Rectangle {
+    id: control
 
     Soloman.SProperties {id: properties}
+
+    property string selectedDate
 
     implicitWidth: 100
     implicitHeight: 24
@@ -33,16 +36,23 @@ Rectangle {
             }
         }
 
-        Text {
+        Soloman.SButton {
             Layout.fillWidth: true
+            implicitHeight: 24
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            text: "Nov 12, 2021"
+            text: control.selectedDate
+            color: "transparent"
+
+            onClicked: popup.open()
         }
     }
 
 
     Popup {
         id: popup
+
+
+        property string selectedDate
 
         property int year: 2023
         property int month: 2
@@ -58,7 +68,6 @@ Rectangle {
 
         width: 256
         height: 256
-        visible: true
         clip: true
 
         function createModel(from, to) {
@@ -143,7 +152,8 @@ Rectangle {
                                 Layout.fillHeight: true
 
                                 onClicked: {
-                                    print(date)
+                                    control.selectedDate = date
+                                    popup.close()
                                 }
                             }
                         }
