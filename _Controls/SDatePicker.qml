@@ -9,9 +9,9 @@ Rectangle {
 
     Soloman.SProperties {id: properties}
 
-    property string selectedDate
+    property string selectedDate: new Date().toISOString().split('T')[0]
 
-    implicitWidth: 100
+    implicitWidth: 84
     implicitHeight: 24
     color: "lightblue"
     clip: true
