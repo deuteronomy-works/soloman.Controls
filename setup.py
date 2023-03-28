@@ -1,12 +1,29 @@
 # -*- coding: utf-8 -*-
+import os
 from setuptools import setup, find_packages
 
 with open('README.md', 'r') as rm:
     long_desc = rm.read()
 
+version = os.environ['GITHUB_REF'].split('/')[-1]
+
+sta = 'Development Status :: 5 - Production/Stable'
+bta = 'Development Status :: 4 - Beta'
+dev_status = sta
+
+ver = version.split('-')[0]
+ver = ver.replace('v', '')
+
+if 'beta' in version:
+    beta = version.split('-')[1]
+    beta = beta.split('beta.')[1]
+    ver += f'b{beta}'
+    dev_status = bta
+
+
 setup(
     name='soloman.Controls',
-    version='3.1.1',
+    version=f'{ver}',
     description='For the love of python and qml',
     long_description=long_desc,
     long_description_content_type='text/markdown',
@@ -22,7 +39,7 @@ setup(
     classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Development Status :: 5 - Production/Stable",
+        f"{dev_status}",
         "Environment :: Other Environment",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
