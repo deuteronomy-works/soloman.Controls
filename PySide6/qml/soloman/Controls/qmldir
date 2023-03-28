@@ -27,3 +27,6 @@ STextField 2.0 STextField.qml
 STextField 3.0 STextField.qml
 STextField 3.1 STextField.qml
 STextField 6.0 STextField.qml
+SDatePicker 3.0 SDatePicker.qml
+SDatePicker 3.1 SDatePicker.qml
+SDatePicker 6.0 SDatePicker.qml
