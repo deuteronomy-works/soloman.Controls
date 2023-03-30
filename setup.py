@@ -48,9 +48,21 @@ setup(
     ],
     packages=['PyQt6', 'PyQt5', 'PySide2', 'PySide6'],
     package_data={
-        'PyQt5': ['Qt5/qml/soloman/Controls/qmldir', 'Qt5/qml/soloman/Controls/*.qml'],
-        'PyQt6': ['Qt6/qml/soloman/Controls/qmldir', 'Qt6/qml/soloman/Controls/*.qml'],
-        'PySide2': ['qml/soloman/Controls/qmldir', 'qml/soloman/Controls/*.qml'],
-        'PySide6': ['qml/soloman/Controls/qmldir', 'qml/soloman/Controls/*.qml']
+        'PyQt5': [
+            'Qt5/qml/soloman/Controls/qmldir',
+            'Qt5/qml/soloman/Controls/fa_regular.otf',
+            'Qt5/qml/soloman/Controls/*.qml'],
+        'PyQt6': [
+            'Qt6/qml/soloman/Controls/qmldir',
+            'Qt6/qml/soloman/Controls/fa_regular.otf',
+            'Qt6/qml/soloman/Controls/*.qml'],
+        'PySide2': [
+            'qml/soloman/Controls/qmldir',
+            'qml/soloman/Controls/fa_regular.otf',
+            'qml/soloman/Controls/*.qml'],
+        'PySide6': [
+            'qml/soloman/Controls/qmldir',
+            'qml/soloman/Controls/fa_regular.otf',
+            'qml/soloman/Controls/*.qml']
         },
 )
