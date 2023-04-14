@@ -43,7 +43,10 @@ Rectangle {
             text: control.selectedDate
             color: "transparent"
 
-            onClicked: popup.open()
+            onClicked: {
+                popup.x = this.x + popup.width > width ? width - popup.width : this.x
+                popup.open()
+            }
         }
     }
 
