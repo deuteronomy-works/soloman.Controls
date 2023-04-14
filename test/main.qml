@@ -10,6 +10,7 @@ ApplicationWindow {
     //color: "#0c0d0d"
 
     SDatePicker {
+        anchors.right: parent.right
     }
 
 
